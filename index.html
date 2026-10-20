@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>Virtual iPhone</title>
+  <meta name="theme-color" content="#0b0c12">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Virtual iPhone">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="images/icon-192.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Thonburi is used first (macOS/iOS). Sarabun and Noto Sans are fallbacks for other devices. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="stage">
+  <div id="device">
+    <div id="phone">
+      <i class="hw act"></i><i class="hw vol1"></i><i class="hw vol2"></i>
+      <button id="power" type="button" aria-label="Power"></button>
+
+      <div id="screen">
+        <!-- Home screen -->
+        <section id="home" inert>
+          <div class="wall"></div>
+          <div class="widget" id="widget"></div>
+          <div class="grid" id="grid"></div>
+          <div class="dock" id="dock"></div>
+        </section>
+
+        <!-- Lock screen -->
+        <section id="lock" role="button" tabindex="0" aria-label="Unlock">
+          <div class="wall"></div>
+          <div class="lk-head">
+            <div class="lk-date" id="lkDate"></div>
+            <div class="lk-time" id="lkTime">--:--</div>
+          </div>
+          <div class="notif" id="lkNotif"></div>
+          <button class="qbtn l" id="torchBtn" type="button" aria-label="Flashlight" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1.2 5H9.2z"/><path d="M9.2 8l-.7 3.5V20a1.5 1.5 0 0 0 1.5 1.5h4a1.5 1.5 0 0 0 1.5-1.5v-8.5L14.8 8"/><path d="M12 12.5v3"/></svg>
+          </button>
+          <button class="qbtn rr" id="camBtn" type="button" aria-label="Camera">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.3-2h6.4l1.3 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.6"/></svg>
+          </button>
+          <div class="hint" data-i18n="slide"></div>
+        </section>
+
+        <!-- Passcode screen -->
+        <section id="pass" aria-hidden="true" inert>
+          <div class="wall"></div>
+          <div class="pass-in">
+            <div class="pass-title" id="passTitle" data-i18n="enter"></div>
+            <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+            <div class="pass-msg" id="passMsg" role="status" aria-live="polite"></div>
+            <div class="keypad" id="keypad"></div>
+          </div>
+        </section>
+
+        <!-- App window -->
+        <section id="app"><div id="appBody"></div></section>
+
+        <div id="status">
+          <span class="tclock">--:--</span>
+          <span class="r">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1.5 4.2a10 10 0 0 1 14 0"/><path d="M4 7a6.5 6.5 0 0 1 9 0"/><circle cx="8.5" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+            <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="16.5" height="9" rx="2.6" fill="currentColor"/><path d="M24.5 4.5v4c.9-.3 1.5-1.1 1.5-2s-.6-1.7-1.5-2z" fill="currentColor" opacity=".5"/></svg>
+          </span>
+        </div>
+        <div id="island"></div>
+        <div id="indicator"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <div class="seg" id="langSeg" role="group" aria-label="Language"></div>
+    <button type="button" class="tb" id="tbSound" aria-pressed="true"></button>
+    <button type="button" class="tb" id="tbFull"></button>
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
